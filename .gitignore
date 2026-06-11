@@ -427,3 +427,6 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+nginx-local.conf
+NGINX-INSTRUCTIONS.md
+NGINX-INSTRUCTIONS.md

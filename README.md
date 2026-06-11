@@ -20,6 +20,37 @@ This is my first project for learning how to build a simple website using HTML a
 2. The browser will load the page and apply styles from `stylesheet/myfirst.css`.
 3. Make changes in the HTML or CSS files and refresh the browser to see updates.
 
+## Changes in local Nginx tp serve the page in browser via http
+
+### Server block to serve the project folder at http://localhost/ui-ux-first-project/
+### Copy this server block into your main nginx.conf (inside the `http` context)
+### or place this file in conf/ and add an `include` directive in nginx-rot-dir\conf\nginx.conf and re-start Nginx server
+
+```bash
+server {
+    listen       80;
+    server_name  localhost;
+
+    # Set root to the workspace parent so requests map directly:
+    root "C:/Users/Aditi Srivastava/Desktop/workspace/web-dev";
+    index index.html myfirst.html;
+
+    # Serve the project at path /ui-ux-first-project/
+    location /ui-ux-first-project/ {
+        # Files are served from: C:/Users/Aditi Srivastava/Desktop/workspace/web-dev/ui-ux-first-project/
+        try_files $uri $uri/ =404;
+        autoindex on;
+    }
+
+    # Default: return 404 for other requests
+    location / {
+        try_files $uri $uri/ =404;
+    }
+}
+```
+
+With the above change you csn open the file in your browser vi the http url --> http://localhost/ui-ux-first-project/html/myfirst.html
+
 ## Notes
 
 - The CSS file is linked with a relative path: `../stylesheet/myfirst.css`.
